@@ -1,63 +1,185 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pedra • Papel • Tesoura</title>
-
-  <!-- CSS principal -->
+  <meta name="description"
+    content="Jogo Pedra, Papel e Tesoura (Best of 5) — projeto pessoal para praticar JavaScript." />
+  <link rel="icon" href="./assets/img/app-icon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./css/main.css" />
 </head>
-<body>
 
-  <!-- App -->
+<body>
+  <div class="bg" aria-hidden="true">
+    <img class="bg-pattern" src="./assets/img/bg-pattern.svg" alt="" />
+  </div>
+
   <div class="app">
-    <!-- Header -->
     <header class="topbar">
-      <h1>✦ Pedra • Papel • Tesoura</h1>
-      <p>Best of 5 • Jogue rápido, ganhe bonito.</p>
+      <div class="brand">
+        <img class="brand-icon" src="./assets/img/app-icon.svg" alt="" />
+        <div class="brand-text">
+          <h1>Pedra • Papel • Tesoura</h1>
+          <p class="subtitle">Best of 5 • Interface em português</p>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button class="btn subtle" type="button" id="rulesBtn" aria-haspopup="dialog">Regras</button>
+        <button class="btn ghost" type="button" id="resetBtn">Reiniciar</button>
+      </div>
     </header>
 
-    <!-- Arena -->
-    <main class="arena">
-      <h2>Escolha sua jogada</h2>
+    <main class="layout">
+      <section class="card scoreboard" aria-label="Placar">
+        <div class="card-head">
+          <h2>Placar</h2>
+          <span class="badge">Rodada <strong id="roundNum">1</strong>/5</span>
+        </div>
 
-      <div class="choices">
-        <button class="choice-btn" data-choice="rock">🪨 Pedra</button>
-        <button class="choice-btn" data-choice="paper">📄 Papel</button>
-        <button class="choice-btn" data-choice="scissors">✂️ Tesoura</button>
-      </div>
+        <div class="score-row">
+          <div class="score-box">
+            <p class="score-label">Você</p>
+            <p class="score-number" id="userScore">0</p>
+          </div>
 
-      <div class="result">
-        <p id="resultText">Faça sua jogada 👆</p>
-      </div>
+          <div class="score-divider" aria-hidden="true">vs</div>
 
-      <div class="actions">
-        <button id="rulesBtn">Regras</button>
-        <button id="resetBtn">Reiniciar</button>
-      </div>
+          <div class="score-box">
+            <p class="score-label">Computador</p>
+            <p class="score-number" id="cpuScore">0</p>
+          </div>
+        </div>
+
+        <div class="progress">
+          <div class="progress-labels">
+            <span>Progresso</span>
+            <span class="muted" id="progressPct">0%</span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="mini-stats">
+          <div class="stat">
+            <span class="stat-title">Vitórias</span>
+            <span class="stat-value" id="wins">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-title">Empates</span>
+            <span class="stat-value" id="ties">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-title">Derrotas</span>
+            <span class="stat-value" id="losses">0</span>
+          </div>
+        </div>
+
+        <p class="callout muted">Vence quem fizer <strong>3</strong> vitórias primeiro.</p>
+      </section>
+
+      <section class="card arena" aria-label="Arena do jogo">
+        <div class="card-head">
+          <h2>Arena</h2>
+          <p class="muted">Escolha sua jogada.</p>
+        </div>
+
+        <div class="battle">
+          <div class="fighter">
+            <p class="fighter-label">Você</p>
+            <div class="choice-pill" id="userPick">
+              <span class="choice-emoji" aria-hidden="true">❔</span>
+              <span class="choice-text">—</span>
+            </div>
+          </div>
+
+          <div class="battle-center" aria-hidden="true">
+            <span class="spark"></span><span class="spark"></span><span class="spark"></span>
+          </div>
+
+          <div class="fighter">
+            <p class="fighter-label">Computador</p>
+            <div class="choice-pill" id="cpuPick">
+              <span class="choice-emoji" aria-hidden="true">❔</span>
+              <span class="choice-text">—</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="result" role="status" aria-live="polite">
+          <p class="result-title" id="resultTitle">Faça sua jogada 👇</p>
+          <p class="result-subtitle muted" id="resultSubtitle">Dica: reinicie quando acabar a melhor de 5.</p>
+        </div>
+
+        <div class="actions" aria-label="Escolhas do jogador">
+          <button class="btn choice-btn" data-choice="rock" type="button"><span class="btn-emoji">🪨</span><span
+              class="btn-text">Pedra</span></button>
+          <button class="btn choice-btn" data-choice="paper" type="button"><span class="btn-emoji">📄</span><span
+              class="btn-text">Papel</span></button>
+          <button class="btn choice-btn" data-choice="scissors" type="button"><span class="btn-emoji">✂️</span><span
+              class="btn-text">Tesoura</span></button>
+        </div>
+
+        <div class="end-banner" id="endBanner" hidden>
+          <div class="end-emoji">🏁</div>
+          <div>
+            <p class="end-title" id="endTitle">Fim de jogo!</p>
+            <p class="end-subtitle muted" id="endSubtitle">Clique em Reiniciar para jogar de novo.</p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card history" aria-label="Histórico">
+        <div class="card-head">
+          <h2>Histórico</h2>
+          <p class="muted">Rodadas recentes</p>
+        </div>
+
+        <ol class="history-list" id="historyList">
+          <li class="history-item muted">Ainda nada por aqui…</li>
+        </ol>
+
+        <figure class="mini-hero" aria-hidden="true">
+          <img src="./assets/img/hero-illustration.svg" alt="" />
+        </figure>
+      </aside>
     </main>
   </div>
 
-  <!-- Modal Regras (UI apenas) -->
+  <!-- Modal -->
   <div class="modal-overlay" id="modalOverlay" hidden></div>
 
-  <section class="modal" id="rulesModal" hidden>
-    <header class="modal-header">
-      <h3>Regras do jogo</h3>
-      <button id="closeRules">✕</button>
+  <section class="modal" id="rulesModal" role="dialog" aria-modal="true" aria-labelledby="rulesTitle"
+    aria-describedby="rulesDesc" hidden>
+    <header class="modal-head">
+      <h3 id="rulesTitle">Regras do jogo</h3>
+      <button class="icon-btn" type="button" id="closeRulesBtn" aria-label="Fechar">✕</button>
     </header>
 
-    <div class="modal-body">
-      <p>Pedra vence Tesoura</p>
-      <p>Tesoura vence Papel</p>
-      <p>Papel vence Pedra</p>
+    <div class="modal-body" id="rulesDesc">
+      <p><strong>Pedra</strong> vence <strong>Tesoura</strong> (amassa).</p>
+      <p><strong>Tesoura</strong> vence <strong>Papel</strong> (corta).</p>
+      <p><strong>Papel</strong> vence <strong>Pedra</strong> (embrulha).</p>
+      <hr class="modal-sep" />
+      <ul>
+        <li>Você escolhe uma jogada.</li>
+        <li>O computador escolhe aleatoriamente.</li>
+        <li>Empate não soma vitória para ninguém.</li>
+        <li><strong>Best of 5</strong>: vence quem fizer <strong>3</strong> vitórias primeiro.</li>
+      </ul>
     </div>
+
+    <footer class="modal-foot">
+      <button class="btn ghost" type="button" id="closeRulesBtn2">Fechar</button>
+    </footer>
   </section>
 
-  <!-- JS -->
   <script src="./js/game.js"></script>
   <script src="./js/ui.js"></script>
   <script src="./js/main.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="280" viewBox="0 0 640 280">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="rgba(108,242,194,.30)"/>
+      <stop offset="1" stop-color="rgba(138,164,255,.28)"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="280" rx="28" fill="rgba(255,255,255,.03)"/>
+  <g transform="translate(70,70)">
+    <rect x="0" y="10" width="150" height="150" rx="26" fill="url(#g)" stroke="rgba(255,255,255,.14)" stroke-width="2"/>
+    <text x="75" y="104" text-anchor="middle" font-size="56">🪨</text>
+  </g>
+  <g transform="translate(245,45)">
+    <rect x="0" y="10" width="150" height="180" rx="26" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.14)" stroke-width="2"/>
+    <text x="75" y="120" text-anchor="middle" font-size="56">📄</text>
+  </g>
+  <g transform="translate(420,70)">
+    <rect x="0" y="10" width="150" height="150" rx="26" fill="url(#g)" stroke="rgba(255,255,255,.14)" stroke-width="2"/>
+    <text x="75" y="104" text-anchor="middle" font-size="56">✂️</text>
+  </g>
+</svg>
