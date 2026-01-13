@@ -1,0 +1,29 @@
+/* layout.css
+   Layout geral, grid, espaçamentos
+*/
+
+.app {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.topbar {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.arena {
+  background: var(--card);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.choices {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pedra • Papel • Tesoura</title>
+
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="./css/main.css" />
+</head>
+<body>
+
+  <!-- App -->
+  <div class="app">
+    <!-- Header -->
+    <header class="topbar">
+      <h1>✦ Pedra • Papel • Tesoura</h1>
+      <p>Best of 5 • Jogue rápido, ganhe bonito.</p>
+    </header>
+
+    <!-- Arena -->
+    <main class="arena">
+      <h2>Escolha sua jogada</h2>
+
+      <div class="choices">
+        <button class="choice-btn" data-choice="rock">🪨 Pedra</button>
+        <button class="choice-btn" data-choice="paper">📄 Papel</button>
+        <button class="choice-btn" data-choice="scissors">✂️ Tesoura</button>
+      </div>
+
+      <div class="result">
+        <p id="resultText">Faça sua jogada 👆</p>
+      </div>
+
+      <div class="actions">
+        <button id="rulesBtn">Regras</button>
+        <button id="resetBtn">Reiniciar</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal Regras (UI apenas) -->
+  <div class="modal-overlay" id="modalOverlay" hidden></div>
+
+  <section class="modal" id="rulesModal" hidden>
+    <header class="modal-header">
+      <h3>Regras do jogo</h3>
+      <button id="closeRules">✕</button>
+    </header>
+
+    <div class="modal-body">
+      <p>Pedra vence Tesoura</p>
+      <p>Tesoura vence Papel</p>
+      <p>Papel vence Pedra</p>
+    </div>
+  </section>
+
+  <!-- JS -->
+  <script src="./js/game.js"></script>
+  <script src="./js/ui.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+</html>

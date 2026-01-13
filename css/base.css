@@ -1,0 +1,25 @@
+/* base.css
+   Reset, variáveis e tipografia
+*/
+
+:root {
+  --bg: #0f1220;
+  --card: #161a2f;
+  --text: #f5f6fa;
+  --muted: #9aa0c3;
+  --accent: #6cf2c2;
+  --radius: 14px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
